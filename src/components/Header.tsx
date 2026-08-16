@@ -1,101 +1,112 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { Phone, Clock, ShieldCheck, Menu, X, User } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
-export default function Header() {
+export default function Navbar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+    const navLinks = [
+        { name: "Tools", href: "#tools" },
+        { name: "Projects", href: "#projects" },
+        { name: "Shading", href: "#shading" },
+        { name: "Gen AI", href: "#gen-ai" },
+    ];
+
     return (
-        <>
-            {/* Top Info Bar */}
-            <div className="bg-primary text-primary-foreground py-2 px-6 text-xs sm:text-sm font-medium flex flex-col sm:flex-row justify-between items-center gap-2 border-b border-white/10">
-                <div className="flex items-center gap-4">
-                    <span className="flex items-center gap-1">
-                        <Phone className="size-3.5 text-accent" />
-                        <a href="tel:18005552739" className="hover:underline">1-800-555-APEX (2739)</a>
+        <header className="sticky top-0 z-50 w-full border-b border-slate-200/80 bg-slate-50/80 backdrop-blur-md">
+            <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+                {/* Brand Logo / Name */}
+                <Link href="/" className="flex items-center gap-2">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 text-sm font-extrabold text-white shadow-sm shadow-indigo-200">
+                        3D
+                    </div>
+                    <span className="text-sm font-bold tracking-tight text-slate-900 sm:text-base">
+                        Portfolio<span className="text-indigo-600">.</span>
                     </span>
-                    <span className="hidden md:flex items-center gap-1">
-                        <Clock className="size-3.5 text-accent" />
-                        Mon - Sat: 7:00 AM - 6:00 PM
-                    </span>
+                </Link>
+
+                {/* Desktop Navigation Links */}
+                <nav className="hidden items-center gap-8 md:flex">
+                    {navLinks.map((link) => (
+                        <a
+                            key={link.name}
+                            href={link.href}
+                            className="text-sm font-semibold text-slate-600 transition-colors hover:text-indigo-600"
+                        >
+                            {link.name}
+                        </a>
+                    ))}
+                </nav>
+
+                {/* Action CTA Button */}
+                <div className="hidden items-center gap-4 md:flex">
+                    <a
+                        href="#contact"
+                        className="rounded-lg border border-slate-300 bg-white px-4 py-2 text-xs font-bold text-slate-800 shadow-sm transition-all hover:border-slate-400 hover:bg-slate-50 hover:shadow"
+                    >
+                        Get in Touch
+                    </a>
                 </div>
-                <div className="flex items-center gap-4">
-                    <span className="flex items-center gap-1">
-                        <ShieldCheck className="size-3.5 text-accent" />
-                        Licensed, Bonded & Insured
-                    </span>
-                </div>
+
+                {/* Mobile Menu Toggle Button */}
+                <button
+                    type="button"
+                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    className="inline-flex items-center justify-center rounded-lg border border-slate-200 bg-white p-2 text-slate-600 hover:bg-slate-100 md:hidden"
+                    aria-label="Toggle Navigation"
+                >
+                    <svg
+                        className="h-5 w-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        {mobileMenuOpen ? (
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M6 18L18 6M6 6l12 12"
+                            />
+                        ) : (
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M4 6h16M4 12h16M4 18h16"
+                            />
+                        )}
+                    </svg>
+                </button>
             </div>
 
-            {/* Header / Navigation */}
-            <header className="sticky top-0 z-50 bg-background/90 backdrop-blur-md border-b border-border transition-all">
-                <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-                    <Link href="/" className="flex items-center gap-2">
-                        <div className="bg-primary text-accent p-2 rounded-lg font-bold flex items-center justify-center">
-                            <span className="text-xl tracking-tighter">/\</span>
+            {/* Mobile Dropdown Menu */}
+            {mobileMenuOpen && (
+                <div className="border-b border-slate-200 bg-white px-6 py-4 shadow-lg md:hidden">
+                    <div className="flex flex-col space-y-3">
+                        {navLinks.map((link) => (
+                            <a
+                                key={link.name}
+                                href={link.href}
+                                onClick={() => setMobileMenuOpen(false)}
+                                className="text-sm font-semibold text-slate-700 transition-colors hover:text-indigo-600"
+                            >
+                                {link.name}
+                            </a>
+                        ))}
+                        <div className="pt-2 border-t border-slate-100">
+                            <a
+                                href="#contact"
+                                onClick={() => setMobileMenuOpen(false)}
+                                className="block w-full text-center rounded-lg border border-slate-300 bg-slate-50 px-4 py-2 text-xs font-bold text-slate-800"
+                            >
+                                Get in Touch
+                            </a>
                         </div>
-                        <div className="flex flex-col">
-                            <span className="font-extrabold text-lg tracking-tight text-primary leading-none">APEX RIDGE</span>
-                            <span className="text-[10px] tracking-[0.25em] text-muted-foreground uppercase font-bold">Roofing Excellence</span>
-                        </div>
-                    </Link>
-
-                    {/* Desktop Navigation */}
-                    <nav className="hidden lg:flex items-center gap-8 text-sm font-semibold">
-                        <Link href="/#services" className="text-muted-foreground hover:text-primary transition-colors">Services</Link>
-                        <Link href="/#why-apex" className="text-muted-foreground hover:text-primary transition-colors">The Apex Standard</Link>
-                        <Link href="/#testimonials" className="text-muted-foreground hover:text-primary transition-colors">Reviews</Link>
-                        <Link href="/#estimate" className="text-muted-foreground hover:text-primary transition-colors">Get Estimate</Link>
-                    </nav>
-
-                    <div className="hidden lg:flex items-center gap-4">
-                        <Button variant="outline" className="font-semibold text-primary border-primary/20 hover:bg-secondary">
-                            Our Portfolio
-                        </Button>
-                        <Button render={<a href="/#estimate" />} className="bg-accent text-accent-foreground font-semibold hover:opacity-95 shadow-md">
-                            Schedule Estimate
-                        </Button>
-                        <Link href="/dash/leads" title="CRM Login">
-                            <Button variant="ghost" size="icon" className="rounded-full border border-border hover:bg-secondary size-10 flex items-center justify-center text-primary shrink-0">
-                                <User className="size-5" />
-                            </Button>
-                        </Link>
-                    </div>
-
-                    {/* Mobile Menu Button / Login */}
-                    <div className="lg:hidden flex items-center gap-3">
-                        <Link href="/dash/leads" title="CRM Login">
-                            <Button variant="ghost" size="icon" className="rounded-full border border-border hover:bg-secondary size-9 flex items-center justify-center text-primary shrink-0">
-                                <User className="size-4.5" />
-                            </Button>
-                        </Link>
-                        <button className="p-2 text-primary focus:outline-none" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-                            {mobileMenuOpen ? <X className="size-6" /> : <Menu className="size-6" />}
-                        </button>
                     </div>
                 </div>
-
-                {/* Mobile Navigation Dropdown */}
-                {mobileMenuOpen && (
-                    <div className="lg:hidden bg-background border-b border-border py-4 px-6 space-y-4 animate-in fade-in slide-in-from-top-2">
-                        <nav className="flex flex-col gap-3 font-semibold">
-                            <Link href="/#services" onClick={() => setMobileMenuOpen(false)} className="text-muted-foreground hover:text-primary py-1">Services</Link>
-                            <Link href="/#why-apex" onClick={() => setMobileMenuOpen(false)} className="text-muted-foreground hover:text-primary py-1">The Apex Standard</Link>
-                            <Link href="/#testimonials" onClick={() => setMobileMenuOpen(false)} className="text-muted-foreground hover:text-primary py-1">Reviews</Link>
-                            <Link href="/#estimate" onClick={() => setMobileMenuOpen(false)} className="text-muted-foreground hover:text-primary py-1">Get Estimate</Link>
-                        </nav>
-                        <div className="flex flex-col gap-2 pt-2 border-t border-border">
-                            <Button variant="outline" className="w-full">Our Portfolio</Button>
-                            <Button render={<a href="/#estimate" />} onClick={() => setMobileMenuOpen(false)} className="w-full bg-accent text-accent-foreground">
-                                Schedule Estimate
-                            </Button>
-                        </div>
-                    </div>
-                )}
-            </header>
-        </>
+            )}
+        </header>
     );
 }

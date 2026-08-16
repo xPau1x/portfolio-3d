@@ -1,64 +1,82 @@
-import React from "react";
+"use client";
+
 import Link from "next/link";
-import { Phone, Mail, MapPin } from "lucide-react";
 
 export default function Footer() {
+    const navLinks = [
+        { name: "Projects", href: "#projects" },
+        { name: "Pipeline", href: "#pipeline" },
+        { name: "Shading", href: "#shading" },
+        { name: "Gen AI", href: "#gen-ai" },
+        { name: "Contact", href: "#contact" },
+    ];
+
+    const socialLinks = [
+        {
+            name: "LinkedIn",
+            href: "https://linkedin.com/in/pau1m",
+            icon: (
+                <svg
+                    className="h-5 w-5"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                </svg>
+            ),
+        },
+    ];
+
     return (
-        <footer className="bg-primary text-primary-foreground/90 border-t border-white/10 pt-16 pb-8 px-6">
-            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-                <div className="space-y-4">
+        <footer className="border-t border-slate-200 bg-slate-200 py-12 px-6">
+            <div className="mx-auto max-w-6xl space-y-8">
+                <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
+                    {/* Logo / Name */}
                     <Link href="/" className="flex items-center gap-2">
-                        <div className="bg-accent text-accent-foreground p-2 rounded-lg font-bold flex items-center justify-center">
-                            <span className="text-xl tracking-tighter text-primary">/\</span>
+                        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-indigo-600 text-xs font-extrabold text-white shadow-sm shadow-indigo-200">
+                            3D
                         </div>
-                        <span className="font-extrabold text-lg tracking-tight text-white">APEX RIDGE</span>
+                        <span className="text-sm font-bold tracking-tight text-slate-900">
+                            Portfolio<span className="text-indigo-600">.</span>
+                        </span>
                     </Link>
-                    <p className="text-xs text-primary-foreground/60 max-w-xs leading-relaxed">
-                        Apex Ridge Roofing is a premium mid-size general roofing contractor delivering slate, copper, standing seam, and shingle installations to clients nationwide.
+
+                    {/* Nav Links */}
+                    <nav className="flex flex-wrap items-center justify-center gap-6 text-xs font-semibold text-slate-600">
+                        {navLinks.map((link) => (
+                            <a
+                                key={link.name}
+                                href={link.href}
+                                className="transition-colors hover:text-indigo-600"
+                            >
+                                {link.name}
+                            </a>
+                        ))}
+                    </nav>
+
+                    {/* Social Icons */}
+                    <div className="flex items-center gap-4 text-slate-500">
+                        {socialLinks.map((item) => (
+                            <a
+                                key={item.name}
+                                href={item.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={item.name}
+                                className="rounded-lg border border-slate-200 p-2 transition-all hover:border-slate-300 hover:bg-slate-50 hover:text-indigo-600"
+                            >
+                                {item.icon}
+                            </a>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Bottom Bar */}
+                <div className="flex flex-col items-center justify-between gap-4 border-t border-slate-100 pt-8 text-xs font-medium text-slate-500 sm:flex-row">
+                    <p>© {new Date().getFullYear()} All rights reserved.</p>
+                    <p className="text-slate-400">
+                        Built with Next.js & Tailwind CSS
                     </p>
-                </div>
-
-                <div className="space-y-3">
-                    <h4 className="font-extrabold text-white text-sm uppercase tracking-wider">Services</h4>
-                    <ul className="text-xs space-y-2 text-primary-foreground/60">
-                        <li><Link href="/#services" className="hover:underline">Residential Asphalt Shingles</Link></li>
-                        <li><Link href="/#services" className="hover:underline">Standing Seam Metal Systems</Link></li>
-                        <li><Link href="/#services" className="hover:underline">Heritage Slate & Concrete Tile</Link></li>
-                        <li><Link href="/#services" className="hover:underline">Commercial TPO & Coating Systems</Link></li>
-                    </ul>
-                </div>
-
-                <div className="space-y-3">
-                    <h4 className="font-extrabold text-white text-sm uppercase tracking-wider">Apex Standard</h4>
-                    <ul className="text-xs space-y-2 text-primary-foreground/60">
-                        <li><Link href="/#why-apex" className="hover:underline">GAF Elite Warranties</Link></li>
-                        <li><Link href="/#why-apex" className="hover:underline">Leak Damage Inspection</Link></li>
-                        <li><Link href="/#why-apex" className="hover:underline">Storm & Hail Claim Support</Link></li>
-                        <li><Link href="/#why-apex" className="hover:underline">Rolling Nail Sweeper Guarantee</Link></li>
-                    </ul>
-                </div>
-
-                <div className="space-y-3">
-                    <h4 className="font-extrabold text-white text-sm uppercase tracking-wider">Contact Info</h4>
-                    <ul className="text-xs space-y-2 text-primary-foreground/60">
-                        <li className="flex items-center gap-2">
-                            <Phone className="size-3.5 text-accent" /> <span>1-800-555-2739</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                            <Mail className="size-3.5 text-accent" /> <span>estimates@apexridgeroofing.com</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                            <MapPin className="size-3.5 text-accent" /> <span>248 Apex Summit Dr, Denver, CO</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div className="max-w-7xl mx-auto pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-xs text-primary-foreground/45 gap-4">
-                <p>© {new Date().getFullYear()} Apex Ridge Roofing LLC. All Rights Reserved. All installations GAF Master Elite certified.</p>
-                <div className="flex gap-4">
-                    <a href="#" className="hover:underline">Privacy Policy</a>
-                    <a href="#" className="hover:underline">Terms of Service</a>
                 </div>
             </div>
         </footer>
