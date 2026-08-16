@@ -72,7 +72,7 @@ export default function Footer() {
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="flex flex-col items-center justify-between gap-4 border-t border-slate-100 pt-8 text-xs font-medium text-slate-500 sm:flex-row">
+                <div className="flex flex-col items-center justify-between gap-4 border-t border-slate-300/90 pt-8 text-xs font-medium text-slate-500 sm:flex-row">
                     <p>© {new Date().getFullYear()} All rights reserved.</p>
                     <p className="text-slate-400">
                         Built with Next.js & Tailwind CSS
