@@ -1,15 +1,18 @@
 {
-    "name": "apex-ridge-roofing",
+    "name": "portfolio-3d",
     "version": "0.1.0",
     "private": true,
     "scripts": {
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
-        "lint": "eslint"
+        "lint": "eslint",
+        "db:generate": "drizzle-kit generate",
+        "db:migrate": "drizzle-kit migrate"
     },
     "dependencies": {
         "@base-ui/react": "^1.7.0",
+        "@neondatabase/serverless": "^1.1.0",
         "@vercel/blob": "^2.7.0",
         "@vercel/postgres": "^0.10.0",
         "class-variance-authority": "^0.7.1",
@@ -31,6 +34,7 @@
         "@types/react": "^19",
         "@types/react-dom": "^19",
         "babel-plugin-react-compiler": "1.0.0",
+        "dotenv-cli": "^11.0.0",
         "drizzle-kit": "^0.31.10",
         "eslint": "^9",
         "eslint-config-next": "16.3.0",
