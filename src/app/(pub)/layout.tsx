@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: "Apex Ridge Roofing | Premium Residential & Commercial Roofing",
+    title: "Pavel Marr | 3D Generalist Portfolio",
     description:
-        "Apex Ridge Roofing delivers high-quality roofing, maintenance, and metal roofing solutions across the United States. Trusted craftsmanship, 25-year warranties.",
+        "Pavel Marr is a 3D generalists with a wide spectrum of proven experience across the entire 3D/animation/motion graphics pipelines. Whether it's modeling, sculpting, retopologizing, unwrapping, texturing, rigging and weight painting, animating, lighting, or rendering - Pavel has done it all. Ready for turnkey production of animated commercials or to take on a more specilized role within an existing company pipeline.",
 };
 
 import Header from "@/components/Header";
